@@ -2,6 +2,6 @@
 
 ![alt image](/img/coilpowah.png)
 
-A safe playground for learning ECMAScript 6 generators.
+A safe playground for studying ECMAScript 6 generators without ending up incinerated.
 
 Clone project, double click on an HTML file, and there you go...
