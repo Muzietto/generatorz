@@ -112,6 +112,11 @@ describe('among the existing iterators', function() {
     expect_from_iterator(homemade_iterator, undefined, true); // 5
   });
   describe('an infinite iterator', function() {
+    it('will never get exhausted', function() {
+      var infinite = naturalNumbers();
+      for (var i = 0; i <= 10000000; i++) infinite.next();
+      expect(infinite.next().value).to.be.equal(10000001);
+    });
     it.skip('can be used to instantiate variables (not on Chrome!!)', function() {
       // var [a,b,c] unsupported on Chrome!!!
       //var [a,b,c] = naturalNumbers(); // extracting next.value
@@ -164,14 +169,14 @@ describe('around iterators men can', function() {
       expect_from_iterator(zipper, undefined, true);
       expect_from_iterator(zipper, undefined, true);
     });
-    it('respects the shortest iterator', function() {
+    it('that respects the shortest iterator', function() {
       var arrs = [['a','b','c'],[1,2],[null]];
       var zipper = zip(arrs);
       expect_from_iterator(zipper, ['a',1,null], false);
       expect_from_iterator(zipper, undefined, true);
       expect_from_iterator(zipper, undefined, true);
     });
-    it('allows mixing different sorts of iterables', function() {
+    it('that allows mixing different sorts of iterables', function() {
       var iterable = {
         [Symbol.iterator]() {
           var c = -1;
@@ -186,23 +191,5 @@ describe('around iterators men can', function() {
       expect_from_iterator(zipper, undefined, true);
       expect_from_iterator(zipper, undefined, true);
     });
-  });
-  it('', function() {
-    var arr = ['a'];
-    var arr_iterator = arr[Symbol.iterator]();
-    expect_from_iterator(arr_iterator, 'a', false);
-    expect_from_iterator(arr_iterator, undefined, true);
-  });
-  it('', function() {
-    var arr = ['a'];
-    var arr_iterator = arr[Symbol.iterator]();
-    expect_from_iterator(arr_iterator, 'a', false);
-    expect_from_iterator(arr_iterator, undefined, true);
-  });
-  it('', function() {
-    var arr = ['a'];
-    var arr_iterator = arr[Symbol.iterator]();
-    expect_from_iterator(arr_iterator, 'a', false);
-    expect_from_iterator(arr_iterator, undefined, true);
   });
 });
