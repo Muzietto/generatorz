@@ -8,6 +8,12 @@
 	The GNU GPL/2 License - Copyright (c) 2015 Generatorz Project
 */
 
+function coroutine(generatorFun, args) {
+  var generator = generatorFun.apply(null, args);
+  generator.next();
+  return generator;
+}
+
 function* simpleDataProducer(counter) {
   counter.incr();
   yield counter.count();
@@ -36,7 +42,26 @@ function* simpleDataConsumerAndProducer(sink, separator) {
       sink.next(acc);
     }
   } finally {
-      sink.next(acc);    
+    sink.next(acc);    
+  }
+  sink.return();
+}
+
+// receives and spits chunks of any size to a simpleD&C
+function* splittingDataConsumerAndProducer(sink) {
+  var input, iterator, data
+  ;
+  try {
+    while (true) {
+      input = yield;
+      console.log('received -> ' + input);
+      for (var charr of input) { // do it with yield*
+        console.log('spit -> ' + charr);
+        sink.next(charr);
+      }
+    }
+  } finally {
+    //sink.next(charr);    
   }
   sink.return();
 }
