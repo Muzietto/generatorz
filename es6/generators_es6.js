@@ -8,6 +8,8 @@
 	The GNU GPL/2 License - Copyright (c) 2015 Generatorz Project
 */
 
+var identity = x => x;
+
 function coroutine(generatorFun, args) {
   var generator = generatorFun.apply(null, args);
   generator.next();
@@ -47,7 +49,25 @@ function* simpleDataConsumerAndProducer(sink, separator) {
   sink.return();
 }
 
-// receives and spits chunks of any size to a simpleD&C
+// receives and puts in list chunks of any size to a simpleDC
+function* collatingDataConsumerAndProducer(sink) {
+  var input;
+  var acc = [];
+  try {
+    while (true) {
+      do {
+        var input = yield;
+        if (typeof input !== 'undefined') acc.push(input);
+      } while (typeof input !== 'undefined');
+      sink.next(acc.map(identity));
+      acc = [];
+    }
+  } finally {
+    sink.return();
+  }
+}
+
+// receives and spits chunks of any size to a simpleDC&P
 function* splittingDataConsumerAndProducer(sink) {
   var input, iterator, data
   ;

@@ -46,15 +46,32 @@ describe('a generator', function() {
       done();
     }, 50);
   });
+  it('can be a collator for other generators', function(done) {
+    var writer = writerFactory();
+    var writerGenerator = coroutine(simpleDataConsumer, [writer]);
+    var collator = coroutine(collatingDataConsumerAndProducer, [writerGenerator]);
+    collator.next('a');
+    collator.next('b');
+    collator.next(['a',12]);
+    collator.next();
+    collator.next(['c',23]);
+    collator.next('d');
+    collator.next();
+    collator.return();
+    setTimeout(function() {
+      expect(writer.written()).to.be.eql([['a','b',['a',12]],[['c',23],'d']]);
+      done();
+    }, 50);
+  });
   it('can be a data consumer and producer for other generators', function(done) {
     this.timeout(50000);
     var writer = writerFactory();
     var wordWriter = coroutine(simpleDataConsumer, [writer]);
     var charReader = coroutine(simpleDataConsumerAndProducer,[wordWriter,' ']);
     var iterator = 'nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura che la diritta via era smarrita'[Symbol.iterator]();
-    
+
     spitChar(continuation);
-    
+
     function spitChar(callback) {
       setTimeout(function() {
         var data = iterator.next();
