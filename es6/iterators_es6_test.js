@@ -12,7 +12,7 @@ mocha.setup('bdd');
 
 function expect_from_iterator(iter, value, done, times) {
   times = times || 1;
-  for (var i=0; i<times; i++) {
+  for (var i = 0; i < times; i++) {
     var data = iter.next();
     expect(data.value).to.be.eql(value);  
     expect(data.done).to.be.eql(done);
@@ -97,10 +97,10 @@ describe('among the existing iterators', function() {
           next() {
             count++;
             if (count < 5) {
-              return { value : 'pippo', done : false };
+              return { value: 'pippo', done: false };
             } else {
               //iterator.return(); // not implemented (yet?)
-              return { value : undefined, done : true };
+              return { value: undefined, done: true };
             }
           }
         }
@@ -180,7 +180,7 @@ describe('around iterators men can', function() {
       var iterable = {
         [Symbol.iterator]() {
           var c = -1;
-          return {next() {c++; return (c<25)?{value:c}:{done:true}}}
+          return { next() { c++; return ( c < 25) ? { value: c } : { done: true } } }
         }
       }
       var iterables = [['a','b','c'],iterable,'pippo'];

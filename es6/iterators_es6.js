@@ -19,7 +19,7 @@ function take(n, iterable) {
         return iterator.next();
       } else {
         //iterator.return(); // not implemented (yet?)
-        return { value : undefined, done : true };
+        return { value: undefined, done: true };
       }
     }
   }
@@ -31,7 +31,10 @@ function zip(iterables) {
   return {
     [Symbol.iterator]() { return this; },
     next() {
-      var result = (running)?{value:[],done:false}:{value:undefined,done:true};
+      var result = (running) 
+        ? { value: [], done: false }
+        : { value: undefined, done: true };
+
       /* if (running) {
        *   var items = iterators.map(iter => iter.next());
        *   running = items.some(item => item.done);
@@ -60,6 +63,6 @@ function naturalNumbers() {
   var i = 0;
   return {
     [Symbol.iterator]() { return this; },
-    next() { return { value : i++, done : false }; }
+    next() { return { value: i++, done: false }; }
   };
 }

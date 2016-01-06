@@ -14,9 +14,9 @@ describe('a generator', function() {
   it('can be a data producer', function() {
     var counter = counterFactory();
     var producer = simpleDataProducer(counter);
-    expect(producer.next()).to.be.eql({value:1,done:false});
-    expect(producer.next()).to.be.eql({value:2,done:false});
-    expect(producer.next()).to.be.eql({value:'fine',done:true});
+    expect(producer.next()).to.be.eql({ value: 1, done: false });
+    expect(producer.next()).to.be.eql({ value: 2, done: false });
+    expect(producer.next()).to.be.eql({ value: 'fine', done: true });
     expect(counter.count()).to.be.equal(3);
   });
   it('can be a data consumer needing to be started', function() {
@@ -67,7 +67,7 @@ describe('a generator', function() {
     this.timeout(50000);
     var writer = writerFactory();
     var wordWriter = coroutine(simpleDataConsumer, [writer]);
-    var charReader = coroutine(simpleDataConsumerAndProducer,[wordWriter,' ']);
+    var charReader = coroutine(simpleDataConsumerAndProducer, [wordWriter,' ']);
     var iterator = 'nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura che la diritta via era smarrita'[Symbol.iterator]();
 
     spitChar(continuation);
@@ -93,8 +93,8 @@ describe('a generator', function() {
     this.timeout(50000);
     var writer = writerFactory();
     var wordWriter = coroutine(simpleDataConsumer, [writer]);
-    var phraseReader = coroutine(simpleDataConsumerAndProducer,[wordWriter,' ']);
-    var charReader = coroutine(simpleDataConsumerAndProducer,[phraseReader,'.']);
+    var phraseReader = coroutine(simpleDataConsumerAndProducer, [wordWriter, ' ']);
+    var charReader = coroutine(simpleDataConsumerAndProducer, [phraseReader, '.']);
     var iterator = 'nel mezzo del cammin di nostra vita.mi ritrovai per una selva oscura.che la diritta via era smarrita'[Symbol.iterator]();
 
     spitChar(continuation);
