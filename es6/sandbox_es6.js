@@ -48,3 +48,18 @@ function *createCombinedIterator() {
 var itecombi = createCombinedIterator();
 var itecombivalues = [...itecombi] // [1,2,'red','green',true]
 
+function *createNumberIteratorWithFinalReturn() {
+  yield 1;
+  yield 2;
+  return 3; // ignored by yield*
+}
+function *createRepeatingIterator(count) {
+  for (let i=0; i < count; i++) {
+    yield "repeat";
+  }
+}
+function *createCombinedIterator2() {
+  let result = yield* createNumberIteratorWithFinalReturn(); // like observing an [...createNumberIteratorWithFinalReturn]
+  yield* createRepeatingIterator(result);
+}
+var itecombiRepeating = createCombinedIterator2(); // last n values are count-ed from what you pass the THIRD next
