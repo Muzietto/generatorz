@@ -117,7 +117,8 @@ describe('among the existing iterators', function() {
       for (var i = 0; i <= 10000000; i++) infinite.next();
       expect(infinite.next().value).to.be.equal(10000001);
     });
-    it.skip('can be used to instantiate variables (not on Chrome!!)', function() {
+//    it.skip('can be used to instantiate variables (not on Chrome!!)', function() {
+    it('can be used to instantiate variables (not on Chrome!!)', function() {
       // var [a,b,c] unsupported on Chrome!!!
       //var [a,b,c] = naturalNumbers(); // extracting next.value
       expect(a).to.be.eql(0);
