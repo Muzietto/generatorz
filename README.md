@@ -14,5 +14,3 @@ Verified on FF 52, Chrome 57, Canary 59 and Chromium Win_x64/457737.
 As of 151015, Chrome/Chromium behave better on iterators, FF kicks ass on generators.
 
 As of 170317, Situation has improved, but Chromium is still one step ahead of the pack.
-
-Clone the project, double click on an HTML file, and there you go...
