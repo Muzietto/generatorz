@@ -66,7 +66,7 @@ describe('among the existing iterators', function() {
     expect_from_iterator(set_iterator, undefined, true);
   });
   describe('an iterator over arguments', function() {
-    it('handles arguments according to the function invocation (not on FF!)', function() {
+    it('handles arguments according to the function invocation', function() {
       function application() {
         return arguments[Symbol.iterator]();
       };
@@ -77,7 +77,7 @@ describe('among the existing iterators', function() {
       expect_from_iterator(app_iterator, [], false);
       expect_from_iterator(app_iterator, undefined, true);      
     });
-    it('may be based upon the spread operator (not on Chrome!)', function() {
+    it('may be based upon the spread operator', function() {
       function application(...args) {
         return [...args][Symbol.iterator]();
       };
