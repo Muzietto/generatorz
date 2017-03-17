@@ -138,7 +138,7 @@ describe('among the existing iterators', function() {
   });
 });
 
-describe('around iterators men can', function() {
+describe('around iterators one can', function() {
   describe('build a take function', function() {
     it('that extracts a subset', function() {
       var arr = ['a','b','c','d','e','f'];
