@@ -51,7 +51,7 @@ var itecombivalues = [...itecombi] // [1,2,'red','green',true]
 function *createNumberIteratorWithFinalReturn() {
   yield 1;
   yield 2;
-  return 3; // ignored by yield*
+  return 3; // ignored by yield* but still returned to any yield*
 }
 function *createRepeatingIterator(count) {
   for (let i=0; i < count; i++) {
@@ -62,4 +62,4 @@ function *createCombinedIterator2() {
   let result = yield* createNumberIteratorWithFinalReturn(); // like observing an [...createNumberIteratorWithFinalReturn]
   yield* createRepeatingIterator(result);
 }
-var itecombiRepeating = createCombinedIterator2(); // last n values are count-ed from what you pass the THIRD next
+var itecombiRepeating = createCombinedIterator2(); // last 3 values are 3 because of 'return 3'
