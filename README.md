@@ -9,7 +9,7 @@ Go to the [iterators online test page](http://rawgit.com/Muzietto/generatorz/mas
 Go to the [generators online test page](http://rawgit.com/Muzietto/generatorz/master/Generators_FF.htm).
 
 - - - - - - - - - - - -
-Verified on FF 52, Chrome 56, Canary 59 and Chromium Win_x64/457737.
+Verified on FF 52, Chrome 57, Canary 59 and Chromium Win_x64/457737.
 
 As of 151015, Chrome/Chromium behave better on iterators, FF kicks ass on generators.
 
