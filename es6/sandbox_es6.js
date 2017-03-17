@@ -63,3 +63,22 @@ function *createCombinedIterator2() {
   yield* createRepeatingIterator(result);
 }
 var itecombiRepeating = createCombinedIterator2(); // last 3 values are 3 because of 'return 3'
+
+var taskRunner = function(starredFunction) {
+  let task = starredFunction();
+  run();
+  
+  function run() {
+    var xxx = task.next();
+    if (!xxx.done) run();
+  }
+}
+
+function* starred() {
+  var count = 0;
+  console.log(count++);
+  yield;
+  console.log(count++);
+  yield;
+  return 'zibibbo';
+}
